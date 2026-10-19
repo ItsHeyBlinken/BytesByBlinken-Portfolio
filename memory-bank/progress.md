@@ -111,3 +111,12 @@ Append-only running log of completed tasks and significant decisions.
   in-dev cards (QuizMaster, Boilerplate Library, Personal Finance Tracker).
 - Blog: hid public admin login (available via `?admin=1`); human-readable
   dates; basic `**bold**` markdown rendering in post bodies.
+
+## 2026-10-19 -- Blog Open Graph / Twitter Card meta tags
+- Added OG and Twitter Card tags to `blog.html` head (title/description from
+  existing page copy; `og:url` = https://bytesbyblinken.com/blog.html).
+- No existing ~1200x630 share image in repo; created
+  `images/assets/og-blog.png` (1200x630, ~40 KB) using site dark palette,
+  accent, and Logo.png. No layout/script/content changes beyond head meta.
+- `index.html` already has basic OG/Twitter tags (left unchanged).
+- Per-post link previews would need static per-post URLs (posts are JS-rendered).

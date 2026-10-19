@@ -36,7 +36,8 @@ an afterthought.
 ## Open follow-ups (after this refresh lands)
 - Consider extracting inline `<script>` blocks into separate JS files for
   maintainability.
-- Consider adding real Open Graph images and a favicon refresh.
+- Blog page OG/Twitter share image shipped (`images/assets/og-blog.png`);
+  consider a favicon refresh and richer homepage OG tags (site_name / alts).
 - Consider an "About" section/page if Chris wants more space for narrative.
 - Add screenshots for live hosted projects (currently using placeholder initials).
 - Optionally link live projects to their GitHub repos in addition to live URLs.
