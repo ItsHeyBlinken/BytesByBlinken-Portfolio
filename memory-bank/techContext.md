@@ -20,6 +20,16 @@
 - If the API is unreachable, `displayStaticPosts()` renders an embedded
   fallback archive so the blog still works.
 
+### Admin access (create / edit posts)
+- The login form is hidden on the public blog page.
+- Open either:
+  - `https://bytesbyblinken.com/blog.html?admin=1`
+  - `https://bytesbyblinken.com/blog.html#admin`
+- Sign in with the blog admin username/password (backend auth; deploy docs use
+  `ADMIN_USERNAME` / `ADMIN_PASSWORD_HASH`).
+- After login, use **+ New Post**, **Edit Mode**, or **Manage Comments** in
+  the nav admin panel.
+
 ## Backend (out of scope for refresh)
 - Node 18+, Express 4, `pg`, `jsonwebtoken`, `bcryptjs`, `helmet`,
   `express-rate-limit`, `cors`.

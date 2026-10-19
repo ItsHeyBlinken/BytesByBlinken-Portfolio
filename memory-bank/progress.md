@@ -94,6 +94,17 @@ Append-only running log of completed tasks and significant decisions.
 - Flagship Online Card Show spans full width (horizontal media + copy);
   SmoothGig CRM and Chat App remain in a two-up supporting row.
 
+## 2026-10-19 -- Documented blog admin sign-in in Memory Bank
+- Added an "Admin access (create / edit posts)" subsection to
+  `memory-bank/techContext.md` covering `?admin=1` / `#admin`, credentials
+  source, and the post-login nav actions.
+
+## 2026-10-19 -- Blog API 500s were a database host mismatch
+- Blog page showed HTTP 500 on `GET /api/posts` and `GET /api/comments/:id`, then fell back to static posts.
+- API root stayed 200. `/health` reported `database: disconnected` with `ECONNREFUSED` to the configured Postgres host on port 5432.
+- No application code change. Chris updated the database host / `DATABASE_URL` in the deployed environment.
+- Rechecked live: `/health` connected, `/api/posts` returned 10 posts (HTTP 200), `/api/comments/1` and `/2` returned HTTP 200.
+
 ## 2026-08-30 -- Inner pages chrome + archive cleanup
 - Aligned `projects.html` and `blog.html` footers with homepage minimal footer.
 - Projects archive: removed filter pills and Demos section; hid placeholder
