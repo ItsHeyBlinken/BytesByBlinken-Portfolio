@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { getAuthConfig } = require('../config/auth');
 
-// Admin credentials (hardcoded for now)
-const ADMIN_USERNAME = 'admin';
-const ADMIN_PASSWORD_HASH = '$2a$12$sTR0XrySVCnK3s/6xnLWYuY95cT2kVeQ.pwbmlu7ZuIz1jNmbS3vq';
+// Admin credentials come from the environment (ADMIN_USERNAME, ADMIN_PASSWORD_HASH).
+// The JWT signing secret comes from JWT_SECRET. All are validated at startup in server.js.
+const { adminUsername: ADMIN_USERNAME, adminPasswordHash: ADMIN_PASSWORD_HASH, jwtSecret: JWT_SECRET } = getAuthConfig();
 
 // Simple test route to verify loading
 router.get('/test', (req, res) => {
@@ -36,7 +37,7 @@ router.post('/login', async (req, res) => {
     // Generate JWT token
     const token = jwt.sign(
       { username: ADMIN_USERNAME, role: 'admin' },
-      process.env.JWT_SECRET || 'your-secret-key',
+      JWT_SECRET,
       { expiresIn: '24h' }
     );
 
@@ -60,7 +61,7 @@ router.get('/verify', (req, res) => {
     return res.status(401).json({ error: 'No token provided' });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key', (err, user) => {
+  jwt.verify(token, JWT_SECRET, (err, user) => {
     if (err) {
       return res.status(403).json({ error: 'Invalid token' });
     }

@@ -4,6 +4,16 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
+// Fail fast: refuse to start without a real JWT_SECRET and ADMIN_PASSWORD_HASH.
+const { getAuthConfig } = require('./config/auth');
+try {
+  getAuthConfig();
+} catch (error) {
+  console.error(error.message);
+  console.error('Set the missing values in the environment (see .env.example) and restart.');
+  process.exit(1);
+}
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
